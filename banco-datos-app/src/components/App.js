@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
+import Header from './Layout/Header';
 
-export default props =>
- 
-<div>
-  <h1>Hi from React</h1>
-</div>
+export default class extends Component {
+  render(){
+    return <div>
+      <Header></Header>
+    </div>
+  }
+}
