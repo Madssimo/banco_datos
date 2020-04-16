@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Header from './Layout/Header';
-import Footer from './Layout/Footer';
+import Footer from './Layout/Footer'
 
 export default class extends Component {
   render(){
