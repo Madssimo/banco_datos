@@ -69,8 +69,8 @@ export default function ScrollableTabsButtonPrevent() {
   };
 
   return (
-    <div className={classes.root}>
-      <AppBar position="fixed" className={classes.appBar}>
+    <div className={classes.appBar}>
+      <AppBar position="static" >
         <Tabs
           value={value}
           onChange={handleChange}
