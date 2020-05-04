@@ -4,7 +4,7 @@ import Footer from './Layout/Footer';
 import Concursos from './Concurso/concursos'
 export default class extends Component {
   render(){
-    return <main className="{'py-0 px-0 my-0 mx-0': specialPage}" > 
+    return <main> 
       <Header></Header>
       <Concursos></Concursos>
       <Footer></Footer>
