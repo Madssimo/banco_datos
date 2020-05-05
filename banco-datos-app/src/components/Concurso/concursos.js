@@ -6,6 +6,7 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme) => ({
   paper: { 
@@ -32,6 +33,10 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: 280,
     minWidth: 120,
   },
+
+  button: {
+    marginTop:300,
+  }
 
 }));
 
@@ -106,7 +111,13 @@ export default function SimplePaper() {
           <div className={classes.div}>
           <Grid container spacing={3}>
             <Grid item xs={12} sm={3}>
-              <Paper className={classes.paper2} elevation={3} >xs=12</Paper>
+              <Paper className={classes.paper2} elevation={3} >xs=12
+              <div className={classes.button}>
+                <Button  variant="contained" color="primary">
+                  Ver
+                </Button>
+                </div>
+              </Paper>
             </Grid>
             <Grid item xs={12} sm={3}>
               <Paper className={classes.paper2} elevation={3}>xs=12</Paper>
