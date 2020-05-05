@@ -17,6 +17,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import logo from './../../up.png';
+import { Link } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -35,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
     },
-  }, 
+  },
   menuButton: {
     marginRight: theme.spacing(2),
     [theme.breakpoints.up('sm')]: {
@@ -53,9 +54,9 @@ const useStyles = makeStyles((theme) => ({
   },
 
   photo: {
-      height: 200,
-      width: 200,
-      paddingLeft: 30,
+    height: 200,
+    width: 200,
+    paddingLeft: 30,
   },
 }));
 
@@ -72,15 +73,15 @@ function ResponsiveDrawer(props) {
   const drawer = (
     <div>
       <div className={classes.toolbar} />
-      <img src={logo} alt="Logo"  className={classes.photo}/>
+      <img src={logo} alt="Logo" className={classes.photo} />
       <Divider />
       <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
+        <ListItem component={Link} to="/concursos" button>
+          Concurso
+        </ListItem>
+        <ListItem component={Link} to="/usuario" button>
+          Perfil
+        </ListItem>
       </List>
       <Divider />
     </div>

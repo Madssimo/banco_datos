@@ -6,10 +6,11 @@ import Grid from '@material-ui/core/Grid';
 const useStyles = makeStyles((theme) => ({
   paper: { 
     overflow: 'auto',
+    marginTop: 90,
     marginLeft: 270,
     marginRight: 30,
     height: 800,
-    marginBottom: 50,
+    marginBottom: -60,
  
   },
   paper2: {
