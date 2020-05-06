@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   formControl: {
-    marginTop: 60,
+    marginTop: 65,
     marginLeft: 280,
     minWidth: 120,
   },
@@ -123,7 +123,9 @@ export default function SimplePaper() {
       <Paper className={classes.paper} elevation={2}>
         <div className={classes.div}>
           <Grid container spacing={3}>
+            
             {strToComponent(concursos)}
+         
           </Grid>
         </div>
       </Paper>
