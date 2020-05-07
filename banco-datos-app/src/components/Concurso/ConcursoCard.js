@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 
-
 const useStyles = makeStyles((theme) => ({
     paper2: {
         padding: theme.spacing(2),
@@ -17,8 +16,6 @@ const useStyles = makeStyles((theme) => ({
     }
 
 }));
-
-
 
 const ConcursoCard = ({ concurso }) => {
 
