@@ -7,6 +7,7 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   paper: { 
@@ -36,7 +37,7 @@ export default function IndexConcurso() {
         <Grid container spacing={0}>
           <Grid item  xs={12} sm={4}>
             <Card className={classes.root}>
-              <CardActionArea>
+              <CardActionArea component={Link} to="/documentos">
                 <CardMedia
                   component="img"
                   alt="Contemplative Reptile"
@@ -52,9 +53,10 @@ export default function IndexConcurso() {
               </CardContent>
             </Card>
           </Grid>
+
           <Grid item  xs={12} sm={4}>
             <Card className={classes.root}>
-              <CardActionArea>
+              <CardActionArea component={Link} to="/participaciones">
                 <CardMedia
                   component="img"
                   alt="Contemplative Reptile"
@@ -72,7 +74,7 @@ export default function IndexConcurso() {
           </Grid>
           <Grid item  xs={12} sm={4}>
             <Card className={classes.root}>  
-              <CardActionArea>
+              <CardActionArea component={Link} to="/perfil"> 
                 <CardMedia
                   component="img"
                   alt="Contemplative Reptile"
