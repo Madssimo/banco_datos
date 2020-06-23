@@ -1,0 +1,12 @@
+  .div {
+    width: 80%;
+    margin-top: 90px;
+    margin-left: 260px;
+    min-width: 350px;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    box-shadow: 10px 10px 40px -12px rgba(0, 0, 0, 0.75);
+  display:inline-block;
+
+
+  }

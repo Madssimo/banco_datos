@@ -1,0 +1,1 @@
+export const url_base_concurso="http://localhost:3000/api/concurso";

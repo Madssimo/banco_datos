@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-
+import Icon from '@material-ui/core/Icon';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -27,7 +27,7 @@ export default function SimplePaper() {
   return (
     <div>
 
-      <Paper className={classes.paper} elevation={2}>
+      <Paper  elevation={2}>
         <Typography variant="h3" gutterBottom>
           Descripcion
             </Typography>
@@ -36,10 +36,8 @@ export default function SimplePaper() {
           unde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam
           dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.
             </Typography>
-        <Button variant="contained" color="primary">
-          Participar
-            </Button>
       </Paper>
+      <Button variant="contained" color="primary" className={classes.button} endIcon={<Icon>send</Icon>}>Send</Button>
     </div>
   );
 }

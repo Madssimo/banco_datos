@@ -1,0 +1,164 @@
+const concursos = require('../db_apis/concurso.js');
+//const express = require('express');
+//const route = require('../services/router.js');
+const controller= {};
+controller.concurso =async function get(req, res, next) {
+    try {
+      const context = {};
+
+      context.id_concurso_apertura = parseInt(req.params.id_concurso_apertura, 10);
+
+      const rows = await concursos.find(context);
+
+      if (req.params.id_concurso_apertura) {
+        if (rows.length === 1) {
+          res.render('customer',{
+            data: rows
+          });
+            res.status(200).json(rows[0]);
+        } else {
+          res.status(404).end();
+
+        }
+      } else {
+          console.log(req.body.nombre);
+        console.log(rows);
+        /*res.json('customer',{
+          data: rows
+        });*/
+        res.status(200).json(rows);
+      }
+    } catch (err) {
+      next(err);
+    }
+  }
+
+
+controller.prueba=(req,res)=>{
+
+    console.log(req.body);
+    res.send("workssss")
+}
+  controller.save = async function post(req, res, next) {
+
+    try {
+      let concurso = getConcursoFromRec(req);
+
+      concurso = await concursos.create(concurso);
+     res.redirect('/list');
+    //    res.send('work');
+        console.log(concurso);
+      //res.status(201).json(participante);
+
+    } catch (err) {
+      next(err);
+    }
+  }
+
+controller.delete=async function del(req, res, next) {
+  try {
+    const id = parseInt(req.params.id, 10);
+
+    const success = await participantes.delete(id);
+
+    if (success) {
+         res.redirect('/list');
+    //  res.status(204).end();
+    } else {
+      res.status(404).end();
+    }
+  } catch (err) {
+    next(err);
+  }
+}
+//res.send("hello world");
+
+
+async function get(req, res, next) {
+  try {
+    const context = {};
+
+    context.id = parseInt(req.params.id, 10);
+
+    const rows = await concursos.find(context);
+
+    if (req.params.id) {
+      if (rows.length === 1) {
+        res.status(200).json(rows[0]);
+      } else {
+        res.status(404).end();
+
+      }
+    } else {
+      res.status(200).json(rows);
+    }
+  } catch (err) {
+    next(err);
+  }
+}
+
+//post
+function getConcursoFromRec(req) {
+  const concurso = {
+    id: req.body.id,
+    nombre: req.body.nombre,
+    nombre_corto: req.body.nombre_corto,
+    descripcion: req.body.descripcion
+
+  };
+
+  return concurso;
+}
+
+async function post(req, res, next) {
+  try {
+    let concurso = getConcursoFromRec(req);
+
+    concurso = await concursos.create(concurso);
+  console.log(req.body);
+    res.status(201).json(concurso);
+  } catch (err) {
+    next(err);
+  }
+}
+
+//update
+async function put(req, res, next) {
+  try {
+    let concurso = getConcursoeFromRec(req);
+
+    concurso.id = parseInt(req.params.id, 10);
+
+    concurso = await concursos.update(concurso);
+
+    if (concurso !== null) {
+      res.status(200).json(concurso);
+    } else {
+      res.status(404).end();
+    }
+  } catch (err) {
+    next(err);
+  }
+}
+
+//delete
+async function del(req, res, next) {
+  try {
+    const id = parseInt(req.params.id, 10);
+
+    const success = await concursos.delete(id);
+
+    if (success) {
+      res.status(204).end();
+    } else {
+      res.status(404).end();
+    }
+  } catch (err) {
+    next(err);
+  }
+}
+module.exports=controller;
+module.exports.delete = del;
+module.exports.put = put;
+module.exports.post = post;
+module.exports.get = get;

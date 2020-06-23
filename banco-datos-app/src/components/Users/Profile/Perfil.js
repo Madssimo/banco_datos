@@ -27,8 +27,6 @@ const useStyles = makeStyles(theme => ({
     flexShrink: 0,
     flexGrow: 0
   },
-  
-  
   paper: { 
     overflow: 'auto',
     marginTop: 90,
@@ -46,9 +44,9 @@ const AccountProfile = props => {
   const classes = useStyles();
 
   const user = {
-    name: 'Shen Zhi',
-    city: 'Los Angeles',
-    country: 'USA',
+    name: 'Moisés Chiari',
+    city: 'Betania',
+    country: 'Panamá',
     timezone: 'GTM-7',
     avatar: '/images/avatars/avatar_11.png'
   };
@@ -63,24 +61,13 @@ const AccountProfile = props => {
       <CardContent>
         <div className={classes.details}>
           <div>
-            <Typography
-              gutterBottom
-              variant="h2"
-            >
-              John Doe
+            <Typography gutterBottom variant="h2">
+              {user.name}
             </Typography>
-            <Typography
-              className={classes.locationText}
-              color="textSecondary"
-              variant="body1"
-            >
+            <Typography className={classes.locationText} color="textSecondary" variant="body1">
               {user.city}, {user.country}
             </Typography>
-            <Typography
-              className={classes.dateText}
-              color="textSecondary"
-              variant="body1"
-            >
+            <Typography className={classes.dateText} color="textSecondary" variant="body1">
               {moment().format('hh:mm A')} ({user.timezone})
             </Typography>
           </div>

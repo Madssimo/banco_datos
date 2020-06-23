@@ -1,0 +1,37 @@
+{
+  "name": "banco_datos_backend",
+  "version": "1.0.0",
+  "description": "Concurso de Banco de Datos de la Universidad de Panama",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "BancoDeDatos"
+  },
+  "keywords": [
+    "banco",
+    "datos",
+    "profesores",
+    "universidad",
+    "nodejs",
+    "angular",
+    "express",
+    "panaa"
+  ],
+  "author": "Moises Chiari, Giancarlo Araujo",
+  "license": "SEE LICENSE IN README",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "morgan": "^1.9.1",
+    "nodemon": "^1.18.9",
+    "oracledb": "github:oracle/node-oracledb#v4.2.0",
+    "sequelize-oracle": "^3.3.2-0.0"
+  },
+  "devDependencies": {
+    "nodemon": "1.18.9"
+  }
+}
