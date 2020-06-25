@@ -6,11 +6,11 @@ controller.concurso =async function get(req, res, next) {
     try {
       const context = {};
 
-      context.id_concurso_apertura = parseInt(req.params.id_concurso_apertura, 10);
+      context.id = parseInt(req.params.id, 10);
 
       const rows = await concursos.find(context);
 
-      if (req.params.id_concurso_apertura) {
+      if (req.params.id) {
         if (rows.length === 1) {
           res.render('customer',{
             data: rows
@@ -18,14 +18,8 @@ controller.concurso =async function get(req, res, next) {
             res.status(200).json(rows[0]);
         } else {
           res.status(404).end();
-
         }
       } else {
-          console.log(req.body.nombre);
-        console.log(rows);
-        /*res.json('customer',{
-          data: rows
-        });*/
         res.status(200).json(rows);
       }
     } catch (err) {
@@ -34,11 +28,6 @@ controller.concurso =async function get(req, res, next) {
   }
 
 
-controller.prueba=(req,res)=>{
-
-    console.log(req.body);
-    res.send("workssss")
-}
   controller.save = async function post(req, res, next) {
 
     try {
@@ -59,7 +48,7 @@ controller.delete=async function del(req, res, next) {
   try {
     const id = parseInt(req.params.id, 10);
 
-    const success = await participantes.delete(id);
+    const success = await concursos.delete(id);
 
     if (success) {
          res.redirect('/list');
@@ -100,10 +89,21 @@ async function get(req, res, next) {
 //post
 function getConcursoFromRec(req) {
   const concurso = {
-    id: req.body.id,
+    id_concurso_apertura: req.body.id_concurso_apertura,
     nombre: req.body.nombre,
-    nombre_corto: req.body.nombre_corto,
-    descripcion: req.body.descripcion
+    descripcion: req.body.descripcion,
+    cod_area:req.body.cod_area,
+    cod_departamento: req.body.cod_departamento,
+    cod_facultad: req.body.cod_facultad,
+    cod_sede: req.body.cod_sede,
+    id_usuario_resp: req.body.id_usuario_resp,
+    estatus:req.body.estatus,
+    fecha_apertura:req.body.fecha_apertura,
+    fecha_cierre:req.body.fecha_cierre,
+    fecha_limite:req.body.fecha_limite,
+    computador_insert:req.body.computador_insert,
+    fecha_bd_insert:req.body.fecha_bd_insert,
+
 
   };
 

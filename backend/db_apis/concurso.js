@@ -18,7 +18,7 @@ const baseQuery =
     estatus "Estatus",
     computador_insert "Agregado el:",
     computador_update "Actualizado el:",
-    fecha_bd_insert "Fecha de insertado el:",
+    fecha_bd_insert "Fecha de insertado:",
     fecha_bd_update "Fecha de actualizado:"
   from concurso`;
 
@@ -42,55 +42,52 @@ module.exports.find = find;
 //--------------------------------------------------------------------
 //----------------------- CREATE FUNCTION ----------------------------
 
-/*const createSql =
- `insert into participante (
-    nombre1,
-    nombre2,
-    apellido1,
-    apellido2,
-    cedula,
-    direccion_postal,
-    email,
-    direccion,
-    tel_residencia,
-    celular,
-    tel_oficina,
-    id_facultad,
-    id_area,
-    id_sede,
-    id_departamento
+const createSql =
+ `insert into concurso (
+    cod_area,
+    cod_departamento,
+    cod_facultad,
+    cod_sede,
+    id_usuario_resp,
+    descripcion,
+    concurso,
+    estatus,
+    fecha_apertura,
+    fecha_cierre,
+    fecha_limite,
+    computador_insert,
+    fecha_bd_insert,
   ) values (
-    :nombre1,
-    :nombre2,
-    :apellido1,
-    :apellido2,
-    :cedula,
-    :direccion_postal,
-    :email,
-    :direccion,
-    :tel_residencia,
-    :celular,
-    :tel_oficina,
+    :cod_area,
+    :cod_departamento,
+    :cod_facultad,
+    :cod_sede,
+    :id_usuario_resp,
+    :descripcion,
+    :concurso,
+    :estatus,
+    :fecha_apertura,
+    :fecha_cierre,
+    :fecha_limite,
     :id_facultad,
-    :id_area,
-    :id_sede,
-    :id_departamento
-  ) returning idparticipante
-  into :idparticipante`;
+    :computador_insert,
+    :fecha_bd_insert,
+  ) returning id_concurso_apertura
+  into :id_concurso_apertura`;
 
 async function create(emp) {
-  const participante = Object.assign({}, emp);
+  const concurso = Object.assign({}, emp);
 
-  participante.idparticipante = {
+  concurso.id_concurso_apertura = {
     dir: oracledb.BIND_OUT,
     type: oracledb.NUMBER
   }
 
-  const result = await database.simpleExecute(createSql, participante);
+  const result = await database.simpleExecute(createSql, concurso);
 
-  participante.idparticipante = result.outBinds.idparticipante[0];
+  concurso.id_concurso_apertura = result.outBinds.id_concurso_apertura[0];
 
-  return participante;
+  return concurso;
 }
 
 module.exports.create = create;
@@ -99,32 +96,29 @@ module.exports.create = create;
 //----------------------- UPDATE FUNCTION ----------------------------
 
 const updateSql =
- `update participante
+ `update concurso
 
    set  
-    nombre1    =  :nombre1,
-    apellido1  =  :apellido1,
-    nombre2    =  :nombre2,
-    apellido2  =  :apellido2,
-    direccion  =  :direccion,
-    email      =  :email,
-    celular    =  :celular,
-    cedula     =  :cedula,
-    tel_residencia  =  :tel_residencia,
-    tel_oficina     =  :tel_oficina,
-    direccion_postal  =  :direccion_postal,
+    concurso          =  :concurso,
+    descripcion       =  :descripcion,
+    estatus           =  :estatus,
+    fecha_apertura    =  :fecha_apertura,
+    fecha_cierre      =  :fecha_cierre,
+    fecha_limite      =  :fecha_limite,
+    computador_update =  :computador_update,
+    fecha_bd_update   =  :fecha_bd_update,
     id_departamento   =  :id_departamento,
-    id_area    = :id_area,
-    id_facultad      = :id_facultad,
-    id_sede    = :id_sede
-  where idparticipante = :idparticipante`;
+    id_area           = :id_area,
+    id_facultad       = :id_facultad,
+    id_sede           = :id_sede
+  where id_concurso_apertura = :id_concurso_apertura`;
 
 async function update(emp) {
-  const participante = Object.assign({}, emp);
-  const result = await database.simpleExecute(updateSql, participante);
+  const concurso = Object.assign({}, emp);
+  const result = await database.simpleExecute(updateSql, concurso);
 
   if (result.rowsAffected && result.rowsAffected === 1) {
-    return participante;
+    return concurso;
   } else {
     return null;
   }
@@ -139,8 +133,8 @@ module.exports.update = update;
 const deleteSql =
  `begin
 
-    delete from participante
-    where idparticipante = :idparticipante;
+    delete from concurso
+    where id_concurso_apertura = :id_concurso_apertura;
 
     :rowcount := sql%rowcount;
 
@@ -148,7 +142,7 @@ const deleteSql =
 
 async function del(id) {
   const binds = {
-    idparticipante: id,
+    id_concurso_apertura: id,
     rowcount: {
       dir: oracledb.BIND_OUT,
       type: oracledb.NUMBER
@@ -159,4 +153,4 @@ async function del(id) {
   return result.outBinds.rowcount === 1;
 }
 
-module.exports.delete = del;*/
+module.exports.delete = del;
