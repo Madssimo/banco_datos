@@ -89,7 +89,7 @@ async function get(req, res, next) {
 //post
 function getConcursoFromRec(req) {
   const concurso = {
-    id_concurso_apertura: req.body.id_concurso_apertura,
+    id_concurso: req.body.id_concurso,
     nombre: req.body.nombre,
     descripcion: req.body.descripcion,
     cod_area:req.body.cod_area,

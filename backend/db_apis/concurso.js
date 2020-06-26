@@ -4,7 +4,7 @@ const database = require('../services/database.js');
 //--------------------------------------------------------------------
 //----------------------- FIND FUNCTION ------------------------------
 const baseQuery =
- `select id_concurso_apertura "id",
+ `select id_concurso "id",
     cod_area "Código de Área",
     cod_departamento "Código de departamento",
     cod_facultad "Código de facultad",
@@ -27,9 +27,9 @@ async function find(context) {
   const binds = {};
 
   if (context.id) {
-    binds.id_concurso_apertura = context.id;
+    binds.id_concurso = context.id;
 
-    query += `\nwhere id_concurso_apertura = :id_concurso_apertura`;
+    query += `\nwhere id_concurso = :id_concurso`;
   }
 
   const result = await database.simpleExecute(query, binds);
@@ -72,20 +72,20 @@ const createSql =
     :id_facultad,
     :computador_insert,
     :fecha_bd_insert,
-  ) returning id_concurso_apertura
-  into :id_concurso_apertura`;
+  ) returning id_concurso,
+  into :id_concurso`;
 
 async function create(emp) {
   const concurso = Object.assign({}, emp);
 
-  concurso.id_concurso_apertura = {
+  concurso.id_concurso = {
     dir: oracledb.BIND_OUT,
     type: oracledb.NUMBER
   }
 
   const result = await database.simpleExecute(createSql, concurso);
 
-  concurso.id_concurso_apertura = result.outBinds.id_concurso_apertura[0];
+  concurso.id_concurso = result.outBinds.id_concurso[0];
 
   return concurso;
 }
@@ -111,7 +111,7 @@ const updateSql =
     id_area           = :id_area,
     id_facultad       = :id_facultad,
     id_sede           = :id_sede
-  where id_concurso_apertura = :id_concurso_apertura`;
+  where id_concurso = :id_concurso`;
 
 async function update(emp) {
   const concurso = Object.assign({}, emp);
@@ -134,7 +134,7 @@ const deleteSql =
  `begin
 
     delete from concurso
-    where id_concurso_apertura = :id_concurso_apertura;
+    where id_concurso = :id_concurso;
 
     :rowcount := sql%rowcount;
 
@@ -142,7 +142,7 @@ const deleteSql =
 
 async function del(id) {
   const binds = {
-    id_concurso_apertura: id,
+    id_concurso: id,
     rowcount: {
       dir: oracledb.BIND_OUT,
       type: oracledb.NUMBER

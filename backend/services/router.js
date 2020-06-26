@@ -14,7 +14,11 @@ router.route('/participante/:id?')
 
 /*---------------------- ROUTER COCNURSO --------------------------*/
 
-router.get('/concurso/:id?',concursos.concurso);
+router.route('/concurso/:id?')
+  .get(concursos.get)
+  .post(concursos.post)
+  .put(concursos.put)
+  .delete(concursos.delete);
 
 
 module.exports = router;
