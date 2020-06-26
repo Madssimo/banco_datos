@@ -17,9 +17,7 @@ const baseQuery =
     fecha_limite "Fecha limite",
     estatus "Estatus",
     computador_insert "Agregado el:",
-    computador_update "Actualizado el:",
     fecha_bd_insert "Fecha de insertado:",
-    fecha_bd_update "Fecha de actualizado:"
   from concurso`;
 
 async function find(context) {
@@ -56,7 +54,7 @@ const createSql =
     fecha_cierre,
     fecha_limite,
     computador_insert,
-    fecha_bd_insert,
+    fecha_bd_insert
   ) values (
     :cod_area,
     :cod_departamento,
@@ -69,11 +67,11 @@ const createSql =
     :fecha_apertura,
     :fecha_cierre,
     :fecha_limite,
-    :id_facultad,
     :computador_insert,
-    :fecha_bd_insert,
-  ) returning id_concurso,
+    :fecha_bd_insert
+  ) returning id_concurso
   into :id_concurso`;
+  
 
 async function create(emp) {
   const concurso = Object.assign({}, emp);
