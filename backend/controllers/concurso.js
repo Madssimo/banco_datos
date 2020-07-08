@@ -89,20 +89,12 @@ async function get(req, res, next) {
 //post
 function getConcursoFromRec(req) {
   const concurso = {
-    id_concurso: req.body.id_concurso,
-    cod_area: req.body.cod_area,
-    cod_departamento: req.body.cod_departamento,
-    cod_facultad: req.body.cod_facultad,
-    cod_sede: req.body.cod_sede,
-    id_usuario_resp: req.body.id_usuario_resp,
     descripcion: req.body.descripcion,
     concurso: req.body.concurso,
     fecha_apertura: req.body.fecha_apertura,
     fecha_cierre: req.body.fecha_cierre,
-    fecha_limite: req.body.fecha_limite,
-    estatus: req.body.estatus,
-    computador_insert: req.body.computador_insert,
-    fecha_bd_insert: req.body.fecha_bd_insert
+    fecha_limite: req.body.fecha_limite
+    
   };
 
   return concurso;

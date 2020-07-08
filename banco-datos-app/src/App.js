@@ -21,7 +21,7 @@ class App extends Component {
         <Route exact path="/documentos" component={Documentos} />
         <Route exact path="/perfil" component={Perfil} />
         <Route exact path="/participaciones" component={Participaciones} />
-        <Route exact path="/Administardor" component={ConcursoAdmin} />
+        <Route exact path="/Administrador" component={ConcursoAdmin} />
 
 {/*<Route component={PageNotFound}/>*/}
         <Route path="/*" component={Main} />

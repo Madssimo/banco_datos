@@ -7,7 +7,7 @@
 
 
 // // class Concursos extends Component {
-  
+
 
 // //   state = { data: [] }
 
@@ -31,7 +31,7 @@
 // //       console.log(data)
 // //     })
 // //     .catch(console.log)
-  
+
 // //   }
 
 // //   render() {
@@ -40,11 +40,11 @@
 // //         <div className="div">
 // //           <Paper>
 // //             <Grid container spacing={3}>
-              
+
 // //               <ConcursoList data={this.state.data}/>
 // //             </Grid>
 // //           </Paper>
-          
+
 // //         </div>
 // //       );
 // //   }
@@ -60,8 +60,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import ConcursoCard from './ConcursoCard'
-import ConcursoList from './ConcursoList';
-
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 
 
@@ -101,27 +100,29 @@ export default function Concursos() {
     setAge(event.target.value);
   };
 
-React.useEffect(() => {
-  console.log("useEffects")
+  React.useEffect(() => {
+    console.log("useEffects")
     ObternetConcursos()
+    
 
-}, [])
+  }, [])
 
-const ObternetConcursos = async () =>{
-  const data = await fetch('http://localhost:3000/api/concurso')
-  const VerConcurso = await data.json()
-  console.log("Ver concurso: ",VerConcurso)
-  setConcursos(VerConcurso)
-}
-const strToComponent = concursos => (
+  const ObternetConcursos = async () => {
+    const data = await fetch('http://localhost:3000/api/concurso')
+    const VerConcurso = await data.json()
+    console.log("Ver concurso: ", VerConcurso)
+    setConcursos(VerConcurso)
+  }
+  const strToComponent = concursos => (
 
-concursos.map((concurso,id) => <Grid item xs={12} sm={3} key={concurso.id_concurso}> <ConcursoCard
-        
-        concurso={concurso.concursos}
-        descripcion={concurso.descripcion}
-        /> 
-        </Grid>)
- );
+    concursos.map((concurso, id) => <Grid item xs={12} sm={3} key={concurso.id_concurso}>
+      {
+        <ConcursoCard
+          concurso={concurso.nombre}
+          descripcion={concurso.descripcion}
+        />}
+    </Grid>)
+  );
 
   return (
     <div>
@@ -185,9 +186,9 @@ concursos.map((concurso,id) => <Grid item xs={12} sm={3} key={concurso.id_concur
       <Paper className={classes.paper} elevation={2}>
         <div className={classes.div}>
           <Grid container spacing={3}>
-          {console.log("data=",concursos)}
-            {strToComponent(concursos)}
-            {console.log("nombre",concursos.descripcion)}
+            {console.log("data=", concursos)}
+            {!setConcursos?<CircularProgress size={50} />:strToComponent(concursos)}
+            {console.log("nombre", concursos.descripcion)}
 
           </Grid>
         </div>

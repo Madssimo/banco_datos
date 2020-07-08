@@ -1,7 +1,22 @@
+const express = require('express');
+const cors= require('cors');
+const app = express();
+
 const webServer = require('./services/webserver.js');
 const database = require('./services/database.js');
 const dbConfig = require('./config/database.js');
 const defaultThreadPoolSize = 4;
+
+app.use(cors());
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'http://localhost:3001/');
+  res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE, PATCH');
+  res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
+  res.header('Access-Control-Allow-Credentials', false);
+  next();
+});
+
 
 // Increase thread pool size by poolMax
 process.env.UV_THREADPOOL_SIZE = dbConfig.hrPool.poolMax + defaultThreadPoolSize;

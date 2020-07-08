@@ -17,7 +17,7 @@ const baseQuery =
     fecha_limite "Fecha limite",
     estatus "Estatus",
     computador_insert "Agregado el:",
-    fecha_bd_insert "Fecha de insertado:",
+    fecha_bd_insert "Fecha de insertado:"
   from concurso`;
 
 async function find(context) {
@@ -42,33 +42,11 @@ module.exports.find = find;
 
 const createSql =
  `insert into concurso (
-    cod_area,
-    cod_departamento,
-    cod_facultad,
-    cod_sede,
-    id_usuario_resp,
     descripcion,
-    concurso,
-    estatus,
-    fecha_apertura,
-    fecha_cierre,
-    fecha_limite,
-    computador_insert,
-    fecha_bd_insert
+    concurso
   ) values (
-    :cod_area,
-    :cod_departamento,
-    :cod_facultad,
-    :cod_sede,
-    :id_usuario_resp,
     :descripcion,
-    :concurso,
-    :estatus,
-    :fecha_apertura,
-    :fecha_cierre,
-    :fecha_limite,
-    :computador_insert,
-    :fecha_bd_insert
+    :concurso
   ) returning id_concurso
   into :id_concurso`;
   
