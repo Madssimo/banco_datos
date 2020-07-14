@@ -42,15 +42,21 @@ module.exports.find = find;
 
 const createSql =
  `insert into concurso (
-    descripcion,
-    concurso
-  ) values (
-    :descripcion,
-    :concurso
-  ) returning id_concurso
-  into :id_concurso`;
-  
+  descripcion,
+  concurso,
+  fecha_apertura,
+  fecha_cierre,
+  fecha_limite
+) values (
+  :descripcion,
+  :concurso,
+  :fecha_apertura,
+  :fecha_cierre,
+  :fecha_limite
+) returning id_concurso
+into :id_concurso`;
 
+  
 async function create(emp) {
   const concurso = Object.assign({}, emp);
 

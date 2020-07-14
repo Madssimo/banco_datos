@@ -14,11 +14,9 @@ import MenuItem from '@material-ui/core/MenuItem';
 import DateFnsUtils from '@date-io/date-fns';
 import {
   MuiPickersUtilsProvider,
-  KeyboardTimePicker,
   KeyboardDatePicker,
 } from '@material-ui/pickers';
-import props from 'prop-types';
-
+import moment from 'moment';
 const currencies = [
   {
     value: 'Departemento1',
@@ -39,14 +37,13 @@ const currencies = [
 ];
 
 
-  {/*conexion de post con react hook */ }
   
   const Concurso = () => {
     const [open, setOpen] = React.useState(false);
     const [currency, setCurrency] = React.useState('Departamento1');
-    const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
+    //const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
     const [crearConcurso, setCrearConcurso] = React.useState(
-        { concurso: '', descripcion: '', fecha_inicio:  '2014-08-18T21:11:54', fecha_final: '2014-08-18T21:11:54', fecha_limite: '2014-08-18T21:11:54'}
+        { concurso: '', descripcion: '', fecha_apertura: '' , fecha_cierre: '', fecha_limite: ''}
     );
 
     const handleSubmit = (e) => {
@@ -73,9 +70,7 @@ const currencies = [
     
   };
 
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-  };
+  
 
 
   return (
@@ -177,59 +172,59 @@ const currencies = [
                 ))}
               </TextField>
             </Grid>
-            <MuiPickersUtilsProvider utils={DateFnsUtils}>
-              <Grid container justify="space-around" item xs={4}>
+            <Grid container justify="space-around" item xs={4}>
                 {/*------------------SELECT FECHA INICIO-------------------------------*/}
-                <KeyboardDatePicker
-                  disableToolbar
-                  variant="inline"
-                  format="MM/dd/yyyy"
-                  margin="normal"
-                  id="date-picker-inline"
-                  label="Date picker inline"
-                  name="fecha_inicio"
-                  value={crearConcurso.fecha_inicio}
+                
+                <TextField
+                  autoFocus
+                  margin="dense"
+                  id="Fecha de apertura"
+                  label="Fecha de Inicio"
+                  type="date"
+                  fullWidth
+                  name="fecha_apertura"
+                  value={crearConcurso.fecha_apertura}
                   onChange={handleChange}
-                  KeyboardButtonProps={{
-                    'aria-label': 'Fecha Inicio',
+                  InputLabelProps={{
+                    shrink: true,
                   }}
                 />
               </Grid>
               <Grid container justify="space-around" item xs={4}>
                 {/*------------------SELECT FECHA FINAL-------------------------------*/}
-                <KeyboardDatePicker
-                  disableToolbar
-                  variant="inline"
-                  format="MM/dd/yyyy"
-                  margin="normal"
-                  id="date-picker-inline"
-                  label="Date picker inline"
-                  name="fecha_final"
-                  value={crearConcurso.fecha_final}
+                
+                <TextField
+                  autoFocus
+                  margin="dense"
+                  id="Fecha de cierre"
+                  label="Fecha final"
+                  type="date"
+                  fullWidth
+                  name="fecha_cierre"
+                  value={crearConcurso.fecha_cierre}
                   onChange={handleChange}
-                  KeyboardButtonProps={{
-                    'aria-label': 'Fecha Final',
+                  InputLabelProps={{
+                    shrink: true,
                   }}
                 />
               </Grid>
               <Grid container justify="space-around" item xs={4}>
                 {/*------------------SELECT FECHA LIMITE-------------------------------*/}
-                <KeyboardDatePicker
-                  disableToolbar
-                  variant="inline"
-                  format="MM/dd/yyyy"
-                  margin="normal"
-                  id="date-picker-inline"
-                  label="Date picker inline"
+                <TextField
+                  autoFocus
+                  margin="dense"
+                  id="Fecha limite"
+                  label="Fecha límite"
+                  type="date"
+                  fullWidth
                   name="fecha_limite"
                   value={crearConcurso.fecha_limite}
                   onChange={handleChange}
-                  KeyboardButtonProps={{
-                    'aria-label': 'Fecha Limite',
+                  InputLabelProps={{
+                    shrink: true,
                   }}
                 />
               </Grid>
-            </MuiPickersUtilsProvider>
             {/*------------------DESCRIPCION-------------------------------*/}
             <TextField
               id="descripcion"
