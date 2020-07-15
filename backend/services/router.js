@@ -2,6 +2,7 @@ const express = require('express');
 const router = new express.Router();
 const participantes = require('../controllers/participante.js');
 const concursos = require('../controllers/concurso.js');
+const universidad = require('../controllers/universidad.js');
 const cors = require('cors');
 
 
@@ -32,6 +33,13 @@ router.route('/concurso/:id?')
   .post(concursos.post)
   .put(concursos.put)
   .delete(concursos.delete);
+
+  /*-------------------- ROUTER UNIVERSIDAD -----------------------*/
+
+  router.get('/sede',universidad.list_unidades);//sedes
+  router.get('/facultad/:id_s?',universidad.list_facultades);//facultades parametro id sede
+  router.get('/departamento/:id?',universidad.list_departamentos);//departamentos parametro id facultad
+  router.get('/area/:id_f?/:id_d?',universidad.list_areas);// areas parametro id facultad y departamento
 
 
 module.exports = router;

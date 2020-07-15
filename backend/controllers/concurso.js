@@ -1,6 +1,5 @@
 const concursos = require('../db_apis/concurso.js');
-//const express = require('express');
-//const route = require('../services/router.js');
+
 const controller= {};
 controller.concurso =async function get(req, res, next) {
     try {
