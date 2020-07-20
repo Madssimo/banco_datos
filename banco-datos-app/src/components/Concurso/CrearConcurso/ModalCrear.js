@@ -11,12 +11,8 @@ import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import Grid from '@material-ui/core/Grid';
 import MenuItem from '@material-ui/core/MenuItem';
-import DateFnsUtils from '@date-io/date-fns';
-import {
-  MuiPickersUtilsProvider,
-  KeyboardDatePicker,
-} from '@material-ui/pickers';
-import moment from 'moment';
+import { Container, Button as ButtonFloating, Link, lightColors, darkColors } from 'react-floating-action-button';
+
 const currencies = [
   {
     value: 'Departemento1',
@@ -45,6 +41,7 @@ const currencies = [
     const [crearConcurso, setCrearConcurso] = React.useState(
         { concurso: '', descripcion: '', fecha_apertura: '' , fecha_cierre: '', fecha_limite: ''}
     );
+    const [sede, setSede] = React.useState([]);
 
     const handleSubmit = (e) => {
       e.preventDefault()
@@ -56,6 +53,38 @@ const currencies = [
             console.log(error)
         }) 
   }
+
+  // React.useEffect(() => {
+  //   console.log("Sede")
+  //   ObtenerSede()
+    
+
+  // }, [])
+
+  // const ObtenerSede = async () => {
+  //   const data = await fetch('http://localhost:3000/api/sede')
+  //   const VerConcurso = await data.json()
+  //   console.log("Ver sede: ", VerConcurso)
+  //   setSede(VerConcurso)
+  // }
+
+    
+
+  React.useEffect(() => {
+    console.log("Sede")
+    ObtenerSede()
+    
+
+  }, [])
+
+  const ObtenerSede = async () => {
+    const data = await fetch('http://localhost:3000/api/sede')
+    const VerSede = await data.json()
+    console.log("Ver sede: ", VerSede)
+    setSede(VerSede)
+  }
+  
+
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -70,15 +99,12 @@ const currencies = [
     
   };
 
-  
-
 
   return (
     <div>
-      <Fab variant="extended" color="primary" onClick={handleClickOpen}>
-        <AddIcon></AddIcon>
-          Crear concurso
-        </Fab>
+      <Fab  aria-label="add" color="primary" onClick={handleClickOpen}>
+        <AddIcon />  
+      </Fab>
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <form onSubmit={handleSubmit}>
         <DialogTitle id="form-dialog-title">Crear Concurso</DialogTitle>
@@ -106,14 +132,14 @@ const currencies = [
                 id="standard-select-currency"
                 select
                 label="Sede"
-                value={currency}
+                value={sede.NOMBRE}
                 onChange={handleChange}
                 helperText="Selecciona una Sede"
                 fullWidth
               >
-                {currencies.map((option) => (
-                  <MenuItem key={option.value} value={option.value}>
-                    {option.label}
+                {sede.map((nombre, id) => (
+                  <MenuItem key={nombre.COD_SEDE} value={nombre.NOMBRE}>
+                    {nombre.NOMBRE}
                   </MenuItem>
                 ))}
               </TextField>
