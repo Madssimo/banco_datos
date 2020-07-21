@@ -9,6 +9,7 @@ import Participaciones from './components/Users/Participaciones/Participaciones'
 import Perfil from './components/Users/Profile/Perfil';
 import ConcursoAdmin from './components/Concurso/CrearConcurso/ConcursoAdmin';
 import ModalCrear from './components/Concurso/CrearConcurso/ModalCrear';
+import SecretarioTable from './components/SecretarioAdmin/SecretarioTable';
 
 class App extends Component {
   render() {
@@ -23,6 +24,7 @@ class App extends Component {
         <Route exact path="/participaciones" component={Participaciones} />
         <Route exact path="/Administrador" component={ConcursoAdmin} />
         <Route exact path="/CrearConcurso" component={ModalCrear} />
+        <Route exact path="/SecretarioTable" component={SecretarioTable}></Route>
 
 
 {/*<Route component={PageNotFound}/>*/}
