@@ -85,11 +85,12 @@ export default function ActionsInAccordionSummary() {
             onClick={(event) => event.stopPropagation()}
             onFocus={(event) => event.stopPropagation()}
             control={<Checkbox />}
-            label="I acknowledge that I should stop the click event propagation"
+            label="Nombre del Concursante"
           />
         </AccordionSummary>
         <AccordionDetails>
-        <AppBar position="sticky">
+        <div className={classes.root}>
+      <AppBar position="static">
         <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
           <Tab label="Item One" {...a11yProps(0)} />
           <Tab label="Item Two" {...a11yProps(1)} />
@@ -103,9 +104,9 @@ export default function ActionsInAccordionSummary() {
         Item Two
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <div><Paper className={classes.paper}> hola mi nombre es guanajuato </Paper></div>
-        
+        Item Three
       </TabPanel>
+    </div>
         </AccordionDetails>
       </Accordion>    
     </div>
