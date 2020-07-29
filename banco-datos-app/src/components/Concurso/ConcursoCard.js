@@ -93,7 +93,7 @@ const ConcursoCard = ({ id, concurso , descripcion}) => {
                 <CardActionArea>
                     <CardMedia
                     className={classes.media}
-                    image="https://www.wallpaperup.com/uploads/wallpapers/2015/06/24/732277/487ac9de75b8545f1cbd526b07000e9f.jpg"
+                    image="https://i.pinimg.com/originals/70/e9/c2/70e9c2ecb855710da133070c9ecc1934.png"
                     title="Contemplative Reptile"
                     />
                     <CardContent>

@@ -68,20 +68,29 @@ function ResponsiveDrawer(props) {
 
   const drawer = (
     <div>
-      <div className={classes.toolbar} />
-      <img src={logo} alt="Logo" className={classes.photo} />
-      <Divider />
-      <List>
-        <ListItem component={Link} to="/concursos" button>
-          Concursos
-        </ListItem>
-        <ListItem component={Link} to="/usuario" button>
-          Perfil
-        </ListItem>
-      </List>
-      <Divider />
+    <div className={classes.toolbar} />
+    <img src={logo} alt="Logo" className={classes.photo} />
+    <Divider />
+    <List>
+    <ListItem component={Link} to="/concursos" button>
+    Concursos
+    </ListItem>
+    <ListItem component={Link} to="/usuario" button>
+    Perfil
+    </ListItem>
+    <ListItem component={Link} to="/SecretarioTable" button>
+    Secretaría Administrativa
+    </ListItem>
+    <ListItem component={Link} to="/" button>
+    Decanato
+    </ListItem>
+    <ListItem component={Link} to="/" button>
+    Comision
+    </ListItem>
+    </List>
+    <Divider />
     </div>
-  );
+    );
 
   return (
     <div className={classes.root}>

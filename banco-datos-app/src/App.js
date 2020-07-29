@@ -16,23 +16,22 @@ class App extends Component {
 
     return (
       <Router>
-        <Route path="/concursos" component={Concursos} />
-        <Route exact path="/usuario" component={IndexUser} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/documentos" component={Documentos} />
-        <Route exact path="/perfil" component={Perfil} />
-        <Route exact path="/participaciones" component={Participaciones} />
-        <Route exact path="/Administrador" component={ConcursoAdmin} />
-        <Route exact path="/CrearConcurso" component={ModalCrear} />
-        <Route exact path="/SecretarioTable" component={SecretarioTable}></Route>
-
-
-{/*<Route component={PageNotFound}/>*/}
-        <Route path="/*" component={Main} />
-
+      <Route exact path="/" component={Concursos}/>
+      <Route path="/concursos" component={Concursos} />
+      <Route exact path="/usuario" component={IndexUser} />
+      <Route exact path="/login" component={Login} />
+      <Route exact path="/documentos" component={Documentos} />
+      <Route exact path="/perfil" component={Perfil} />
+      <Route exact path="/participaciones" component={Participaciones} />
+      <Route exact path="/Administrador" component={ConcursoAdmin} />
+      <Route exact path="/CrearConcurso" component={ModalCrear} />
+      <Route exact path="/SecretarioTable" component={SecretarioTable}/>
+     {/*<Route component={PageNotFound}/>*/}
+      <Route path="/*" component={Main} />
+      
       </Router>
-
-    ); 
+      
+      ); 
   }
 }
 
