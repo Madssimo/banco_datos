@@ -9,6 +9,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia'
 import Typography from '@material-ui/core/Typography';
+import Modal from '@material-ui/core/Modal';
 function rand() {
     return Math.round(Math.random() * 20) - 10;
 }
@@ -25,12 +26,12 @@ function getModalStyle() {
 const useStyles = makeStyles((theme) => ({
    
     paperModal: {
-        position: 'relative',
+        position: 'cover',
         height: 800,
         width: 800,
         backgroundColor: theme.palette.background.paper,
         border: '2px solid #000',
-        boxShadow: theme.shadows[5],
+        boxShadow: theme.shadows[50],
         padding: theme.spacing(2, 4, 3),
     },
 
@@ -38,10 +39,16 @@ const useStyles = makeStyles((theme) => ({
         marginTop: 250,
     },
      root: {
-    maxWidth: 345,
+    maxWidth: 'cover',
   },
   media: {
-    height: 140,
+    height:140,
+  },
+  MediaContent: {
+    height:100,
+  },
+  MediaButton: {
+    height:100,
   },
 
 }));
@@ -69,17 +76,15 @@ const ConcursoCard = ({ id, concurso , descripcion}) => {
         </div>
     );
 
-    console.log("holaaaa",concurso);
     return (
         <div>
             <Paper className={classes.paper2} elevation={10}>
-                {/* <h1>{concurso}</h1>
+             {/* <h1>{concurso}</h1>
                 <p>{descripcion}</p>
                 <h6 class="card-subtitle mb-2 text-muted">{id}</h6>
                 <div className={classes.button}>
                     <Button variant="outlined" color="primary" onClick={handleOpen}> Ver </Button>
                     
-                 {/* ventana modal
                     <Modal
                         open={open}
                         onClose={handleClose}
@@ -88,7 +93,7 @@ const ConcursoCard = ({ id, concurso , descripcion}) => {
                     >
                         {body}
                     </Modal>
-                </div>*/}
+                </div> */}
                 <Card className={classes.root}>
                 <CardActionArea>
                     <CardMedia
@@ -96,7 +101,7 @@ const ConcursoCard = ({ id, concurso , descripcion}) => {
                     image="https://i.pinimg.com/originals/70/e9/c2/70e9c2ecb855710da133070c9ecc1934.png"
                     title="Contemplative Reptile"
                     />
-                    <CardContent>
+                    <CardContent  className={classes.MediaContent}>
                     <Typography gutterBottom variant="h5" component="h2">
                         {concurso}
                     </Typography>
@@ -105,13 +110,14 @@ const ConcursoCard = ({ id, concurso , descripcion}) => {
                     </Typography>
                     </CardContent>
                 </CardActionArea>
-                <CardActions>
+                <CardActions className={classes.MediaButton}>
                     <Button size="small" color="primary">
                     Concursar
                     </Button>
                     <Button size="small" color="primary">
                     Ver más
                     </Button>
+                    
                 </CardActions>
                 </Card>
             </Paper> 

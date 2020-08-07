@@ -11,7 +11,11 @@ import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import Grid from '@material-ui/core/Grid';
 import MenuItem from '@material-ui/core/MenuItem';
-import { Container, Button as ButtonFloating, Link, lightColors, darkColors } from 'react-floating-action-button';
+import { SnackbarProvider } from "notistack";
+import EditTwoToneIcon from '@material-ui/icons/EditTwoTone';
+import { useSnackbar } from "notistack";
+
+
 
 const currencies = [
   {
@@ -35,6 +39,8 @@ const currencies = [
 
   
   const Concurso = () => {
+    const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+    
     const [open, setOpen] = React.useState(false);
     const [currency, setCurrency] = React.useState('Departamento1');
     //const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
@@ -42,46 +48,42 @@ const currencies = [
         { concurso: '', descripcion: '', fecha_apertura: '' , fecha_cierre: '', fecha_limite: ''}
     );
     const [sede, setSede] = React.useState([]);
+    const [modalInsertar, setModalInsertar]=React.useState(false);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
+      
       e.preventDefault()
-      axios.post('http://localhost:3000/api/concurso', crearConcurso)
-        .then(function (response) {
-            console.log(response)
+      await axios.post('http://localhost:3000/api/concurso', crearConcurso)
+        .then(function (response) 
+        {
+          handleClose();
+          enqueueSnackbar('Creado con éxito', { 
+            variant: 'success',
+        });
         })
         .catch(function (error) {
             console.log(error)
         }) 
   }
 
-  // React.useEffect(() => {
-  //   console.log("Sede")
-  //   ObtenerSede()
-    
-
-  // }, [])
-
-  // const ObtenerSede = async () => {
-  //   const data = await fetch('http://localhost:3000/api/sede')
-  //   const VerConcurso = await data.json()
-  //   console.log("Ver sede: ", VerConcurso)
-  //   setSede(VerConcurso)
-  // }
+  
 
     
 
-  React.useEffect(() => {
+  React.useEffect(async() => {
     console.log("Sede")
-    ObtenerSede()
-    
+    await ObtenerSede();
+
 
   }, [])
+ 
 
-  const ObtenerSede = async () => {
-    const data = await fetch('http://localhost:3000/api/sede')
-    const VerSede = await data.json()
-    console.log("Ver sede: ", VerSede)
-    setSede(VerSede)
+  
+  const ObtenerSede=async()=>{
+    await axios.get('http://localhost:3000/api/sede')
+    .then(response=>{
+      setSede(response.data);
+    })
   }
   
 
@@ -98,12 +100,18 @@ const currencies = [
     setCrearConcurso({...crearConcurso, [event.target.name]: event.target.value})
     
   };
+  const abrirCerrarModalInsertar=()=>{
+    setModalInsertar(!modalInsertar);
+  }
 
 
   return (
     <div>
       <Fab  aria-label="add" color="primary" onClick={handleClickOpen}>
         <AddIcon />  
+      </Fab>
+      <Fab  aria-label="EditTwoTone" color="primary" onClick={handleClickOpen}>
+        <EditTwoToneIcon />  
       </Fab>
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <form onSubmit={handleSubmit}>
@@ -271,9 +279,10 @@ const currencies = [
           <Button onClick={handleClose} color="primary">
             Cancelar
           </Button>
-          <Button type="submit" color="primary">
+          <Button type="submit" color="primary" >
             Crear
-          </Button>   
+          </Button>  
+          
         </DialogActions>
         </form>
       </Dialog>

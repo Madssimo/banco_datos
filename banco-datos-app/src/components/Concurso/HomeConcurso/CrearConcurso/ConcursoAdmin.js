@@ -1,6 +1,6 @@
 import React from 'react';
-import ModalCrear from './ModalCrear';
-import Concursos from './../Concursos';
+import ModalCrear from './../CrearConcurso/ModalCrear';
+import Concursos from './../../HomeConcurso/Concursos';
 import { makeStyles } from '@material-ui/core/styles';
 import SpeedDial from '@material-ui/lab/SpeedDial';
 import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon';
@@ -60,7 +60,9 @@ export default function SimplePaper() {
 
   return (
     <div >
-      <Concursos></Concursos>
+      <Concursos>
+        
+      </Concursos>
       <div className={classes.root}>
         <ModalCrear></ModalCrear>
       </div>

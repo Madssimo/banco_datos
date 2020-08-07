@@ -1,20 +1,22 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import Main from './components/Main';
+import Main from './components/Main/Main';
 import IndexUser from './components/Users/IndexUser';
-import Concursos from './components/Concurso/Concursos';
+import Concursos from './components/Concurso/HomeConcurso/Concursos';
 import Login from './components/Auth/Login';
 import Documentos from './components/Users/Documentos/Documentos';
 import Participaciones from './components/Users/Participaciones/Participaciones';
 import Perfil from './components/Users/Profile/Perfil';
-import ConcursoAdmin from './components/Concurso/CrearConcurso/ConcursoAdmin';
-import ModalCrear from './components/Concurso/CrearConcurso/ModalCrear';
-import SecretarioTable from './components/SecretarioAdmin/SecretarioTable';
+import ConcursoAdmin from './components/Concurso/HomeConcurso/CrearConcurso/ConcursoAdmin';
+import ModalCrear from './components/Concurso/HomeConcurso/CrearConcurso/ModalCrear';
+import SecretarioTable from './components/Concurso/SecretarioAdmin/SecretarioTable';
+import { SnackbarProvider } from "notistack";
 
 class App extends Component {
   render() {
 
     return (
+      <SnackbarProvider>
       <Router>
       <Route exact path="/" component={Concursos}/>
       <Route path="/concursos" component={Concursos} />
@@ -30,7 +32,8 @@ class App extends Component {
       <Route path="/*" component={Main} />
       
       </Router>
-      
+      </SnackbarProvider>
+
       ); 
   }
 }
