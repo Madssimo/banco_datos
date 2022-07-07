@@ -20,7 +20,7 @@
     "date-fns": "^2.14.0",
     "fomantic-ui-css": "^2.8.6",
     "install": "^0.13.0",
-    "moment": "^2.26.0",
+    "moment": "^2.29.4",
     "notistack": "^0.9.17",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
